@@ -1,0 +1,161 @@
+@use "sass:map";
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700&display=swap');
+$DarkBlue: hsl(233, 26%, 24%);
+ $LimeGreen: hsl(136, 65%, 51%);
+  $BrightCyan: hsl(192, 70%, 51%);
+  $GrayishBlue: hsl(233, 8%, 62%);
+   $LightGrayishBlue: hsl(220, 16%, 96%);
+    $VeryLightGray: hsl(0, 0%, 98%);
+     $White: hsl(0, 0%, 100%);
+@mixin desktop {
+    @media screen and (min-width:1024px) {
+        @content;
+    }
+}
+@mixin grid($col,$column-gap,$row-gap) {
+    display: grid;
+    grid-template-columns: repeat($col,1fr);
+    column-gap: $column-gap;
+    row-gap: $row-gap;
+}
+@mixin  flex($direction:column,$justify:center,$align:center) {
+    display: flex!important;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+$font-weights: (
+    "light": 300,
+    "regular": 400,
+    "semi-bold":500,
+    "bold": 700
+);
+@each $name,$weight in $font-weights{
+    .fw-#{$name}{
+        font-weight: $weight;
+    }
+}
+$font-sizes:('100':0.625rem,'200':0.75rem,'300':0.875rem,'400':1rem,'500':1.125rem,'600':1.25rem,'700':1.5rem,'800':1.75rem,'900':2rem,'1000':2.5rem);
+@each $name,
+$size in $font-sizes {
+    .fs-#{$name} {
+        font-size: $size;
+    }
+}
+
+.fs-body{
+font-size: map-get($map: $font-sizes, $key:'300');
+@include desktop{
+font-size: map-get($map: $font-sizes, $key: '400');
+}
+}
+.fs-article{
+    font-size: map-get($map: $font-sizes, $key: '200');
+    
+        @include desktop {
+            font-size: map-get($map: $font-sizes, $key: '300');
+        }
+}
+.fs-heading-primary{
+font-size: map-get($map: $font-sizes, $key:'900');
+@include desktop{
+font-size: map-get($map: $font-sizes, $key: '1000');
+}
+}
+.fs-heading-section{
+font-size: map-get($map: $font-sizes, $key:'800');
+@include desktop{
+font-size: map-get($map: $font-sizes, $key: '900');
+}
+}
+.fs-heading-tab{
+font-size: map-get($map: $font-sizes, $key:'600');
+@include desktop{
+font-size: map-get($map: $font-sizes, $key: '700');
+}
+}
+.fs-heading-article{
+font-size: map-get($map: $font-sizes, $key:'500');
+@include desktop {
+        font-size: map-get($map: $font-sizes, $key: '600');
+    }
+}
+.fs-heading-small{
+font-size: map-get($map: $font-sizes, $key:'100');
+}
+
+.color-dark{
+    color: $DarkBlue;
+}
+.color-gray{
+    color: $GrayishBlue;
+}
+.color-white{
+    color: $White;
+}
+.bg-light-gray{
+    background-color: $VeryLightGray;
+}
+.bg-medium-gray{
+    background-color: $LightGrayishBlue;
+}
+.bg-dark{
+    background-color: $DarkBlue;
+}
+.bg-white{
+    background-color: $White;
+}
+
+$sizes:('50':0.5rem,'100':1rem,'150':1.5rem,'200':2rem,'250':2.5rem,'300':3rem);
+@each $name,$size in $sizes {
+    .m{
+        &x-#{$name}{
+             margin-inline: $size;
+        }
+        &y-#{$name}{
+             margin-block: $size;
+        }
+        &l-#{$name}{
+             margin-left: $size;
+        }
+        &r-#{$name}{
+             margin-right: $size;
+        }
+        &b-#{$name}{
+             margin-bottom: $size;
+        }
+        &t-#{$name}{
+             margin-top: $size;
+        }
+    }
+    .p{
+        &x-#{$name}{
+             padding-inline: $size;
+        }
+        &y-#{$name}{
+             padding-block: $size;
+        }
+        &l-#{$name}{
+             padding-left: $size;
+        }
+        &r-#{$name}{
+             padding-right: $size;
+        }
+        &b-#{$name}{
+             padding-bottom: $size;
+        }
+        &t-#{$name}{
+             padding-top: $size;
+        }
+    }
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    @include desktop{
+        align-items: flex-start;
+        text-align: left;
+    }
+}

@@ -1,0 +1,330 @@
+@use 'config' as c;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    transition: all 250ms;
+    line-height: inherit;
+}
+body{
+    position: relative;
+  font-family: 'Public Sans', sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+    &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+         @include c.desktop{
+            display: none;
+         }
+          
+        }
+                  &.blurred {
+                      body .nav {
+                          z-index: 20;
+                      
+                      }
+              &::before{
+                z-index: 1;
+                background-color: rgba($color: #000000, $alpha: 0.2);
+              }
+                  }
+}
+main{
+    height: 100%;
+}
+.container{
+    width: 85%;
+    margin-inline: auto;
+    @include c.desktop{
+        max-width: 80%;
+    }
+}
+button{
+    display: block;
+    color: inherit;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+a{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+img{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+h1,h2,h3,h4,h5,h6{
+    text-align: center;
+    color: c.$DarkBlue;
+    @include c.desktop{
+        text-align: left;
+    }
+
+}
+.txt{
+    text-align: center;
+  
+    @include c.desktop{
+        text-align: left;
+        
+    }
+}
+.btn{
+padding: 0.75rem 1.5rem;
+background-image: linear-gradient(to right,c.$LimeGreen,c.$BrightCyan);
+border-radius: 50px;
+color: white;
+font-weight: 700;
+&:hover{
+    background-image: linear-gradient(to right,lighten($color: c.$LimeGreen, $amount: 15%),lighten($color: c.$BrightCyan, $amount: 15%));
+    }
+}
+.nav{
+    z-index: 5;
+    background-color: white;
+    position: relative;
+    padding-block: 1rem;
+    @include c.desktop{
+        padding-block:0 ;
+        z-index: 15;
+    }
+    &--container{
+       @include c.flex(row,space-between)
+    }
+    &--btn{
+        display: none;
+        padding-inline: 2rem;
+        @include c.desktop {
+                display: block;
+            }
+    }
+    
+    &--links{
+        background-color: white;
+        position: absolute;
+        color: c.$DarkBlue;
+        bottom: -250px;
+        width: 90%;
+        padding-block: 1.5rem;
+        @include c.desktop{
+            position: static;
+            width: auto;
+            padding-block: 0;
+            @include c.flex(row);
+            gap:2rem;
+            color: inherit;
+        }
+    }
+    &--link{
+        text-align: center;
+        padding-block: 0.5rem;
+        font-weight: 500;
+        @include c.desktop{
+            padding-block: 1.25rem;
+            border-bottom:4px solid transparent;
+            &:hover{
+            border-color: c.$LimeGreen;
+            }
+        }
+       
+    }
+    &--menu{
+        display: block;
+        z-index: 60;
+        @include c.desktop{
+            display: none;
+        }
+    }
+    &--closed{
+        z-index: 60;
+        display: block;
+        @include c.desktop{
+            display: none;
+        }
+    }
+}
+
+.header{
+    z-index: -10;
+padding-top: 30vh;
+padding-bottom: 5rem;
+background-image: url(./images/bg-intro-mobile.svg);
+background-repeat: no-repeat;
+background-size:100% 70%,;
+background-position:left 140% top -40%;
+position: relative;
+@include c.desktop{
+    padding-block: 8rem;
+    background-image: url(./images/bg-intro-desktop.svg);
+    background-size:70% 150%;
+    background-position:right -50% top 60%;
+    z-index: 10;
+}
+    &--container{
+       @include c.flex(row,flex-start,center)
+    }
+    &--content{
+        margin-top: 2rem;
+        @include c.desktop{
+            width: 35%;
+            margin-top: 0;
+        }
+    }
+    &--bg{
+        position: absolute;
+        width:90%;
+        height: 40vh;
+        top: -10%;
+        left: 5%;
+        @include c.desktop{
+            width:45%;
+            height: 135%;
+            z-index: 10;
+            left: 60%;
+            top: -15%;
+        }
+       
+    }
+    
+}
+.info{
+    z-index: -15;
+    &--container{
+        padding-block: 3rem;
+        @include c.desktop{
+            padding-block: 5rem;
+        }
+    }
+    &--head{
+        @include c.desktop{
+            width: 50%
+        }
+    }
+    &--display{
+        @include c.flex();
+        gap:1.5rem;
+        @include c.desktop{
+            flex-direction: row;
+            gap:3rem;
+        }
+    }
+}
+.articles{
+    z-index: -15;
+    &--container{
+        padding-block: 5rem;
+    }
+   &--display{
+    @include c.flex();
+    gap:1.5rem;
+    @include c.desktop {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 3rem;
+        }
+   }
+}
+.article{
+    *{
+text-align: left;
+    }
+   
+    &--img{
+        height: 25vh;
+        @include c.desktop{
+            height: 30vh;
+        }
+    }
+    &--content{
+        padding-inline: 1.25rem;
+    }
+}
+.footer{
+    z-index: -15;
+    &--container{
+        padding-block: 2rem;
+        @include c.flex();
+        gap:1.5rem;
+        @include c.desktop{
+            display: grid!important;
+            grid-template-columns: repeat(3,auto);
+            justify-content: space-between;
+            padding-block: 4rem;
+        }
+    }
+    &--media{
+    @include c.flex();
+    gap:2rem;
+    @include c.desktop{
+        height: 100%;
+        @include c.flex(column,space-between);
+        gap: 0rem;
+       
+    }
+    }
+    &--socials{
+        @include c.flex(row);
+        gap: 1rem;
+    }
+    &--social{
+            &:hover {
+                    color: c.$LimeGreen;
+                }
+    }
+    &--links{
+        @include c.flex();
+    
+        @include c.desktop{
+            display: grid!important;
+            grid-template-columns: repeat(2,auto);
+            column-gap: 7rem;
+            margin-left: -9rem;
+        }
+      
+    }
+    &--link{
+            &:hover {
+                    color: c.$LimeGreen;
+                }
+    }
+   
+    &--rest{
+        @include c.flex();
+        gap: 2rem;
+        @include c.desktop {
+                height: 100%;
+                @include c.flex(column,space-between);
+                gap: 0rem;
+               margin-left: auto;
+               margin-right: 0;
+            }
+    }
+}
+.hide{
+    display: none;
+}
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0.95;
+}
+.moveDown {
+    transform: translateY(8rem);
+    opacity: 0;
+    transition: all 2s;
+    transition-timing-function: ease-in;
+}
