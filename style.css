@@ -394,6 +394,7 @@
 
 body {
   position: relative;
+  min-height: 100vh;
   font-family: "Public Sans", sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
@@ -413,6 +414,9 @@ body::before {
 }
 body.blurred body .nav {
   z-index: 20;
+}
+body.blurred body .footer, body.blurred body .info, body.blurred body.articles, body.blurred body .header {
+  z-index: -1;
 }
 body.blurred::before {
   z-index: 1;
@@ -518,8 +522,10 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   color: hsl(233deg, 26%, 24%);
   bottom: -250px;
+  left: 50%;
   width: 90%;
   padding-block: 1.5rem;
+  transform: translateX(-50%);
 }
 @media screen and (min-width: 1024px) {
   .nav--links {
@@ -568,7 +574,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header {
-  z-index: 1;
   padding-top: 30vh;
   padding-bottom: 5rem;
   background-image: url(./images/bg-intro-mobile.svg);
@@ -619,7 +624,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .info {
-  z-index: -15;
+  position: relative;
 }
 .info--container {
   padding-block: 3rem;
@@ -649,7 +654,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .articles {
-  z-index: -15;
+  position: relative;
 }
 .articles--container {
   padding-block: 5rem;
@@ -685,7 +690,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer {
-  z-index: -15;
+  position: relative;
 }
 .footer--container {
   padding-block: 2rem;
